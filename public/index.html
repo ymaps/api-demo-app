@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/png" sizes="48x48" href="./favicon.png" />
+		<title>Demo App</title>
+		<link rel="manifest" href="./manifest.json" />
+		<script>
+			const urlLang = new URLSearchParams(window.location.search).get(
+				'lang'
+			);
+			const lang = JSON.parse(
+				'<%= htmlWebpackPlugin.options.SUPPORTED_LANGUAGES%>'
+			).includes(urlLang)
+				? urlLang
+				: '<%= htmlWebpackPlugin.options.LANGUAGE%>';
+
+			document.write(
+				`<script src="<%= htmlWebpackPlugin.options.APIURL%>?apikey=<%= htmlWebpackPlugin.options.APIKEY%>&lang=${lang}"><\/script>`
+			);
+		</script>
+	</head>
+	<body>
+		<noscript> You need to enable JavaScript to run this app. </noscript>
+		<div id="root"></div>
+	</body>
+</html>
